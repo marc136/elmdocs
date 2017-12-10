@@ -1,4 +1,4 @@
-# [ElmDocs](http://jackysee.github.io/elmdocs)
+# [ElmDocs](http://marc136.github.io/elmdocs)
 
 ElmDocs is an experimental package documentation site for Elm packages, like [devdocs](http://devdocs.io).
 You can enable multiple package documentations for quick search, the added documentations are stored to

@@ -10,7 +10,6 @@ module.exports = {
   bail: true,
   entry: [
     paths.entry,
-    paths.ga
   ],
   output: {
 
