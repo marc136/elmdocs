@@ -1,0 +1,879 @@
+[
+  {
+    "name": "Nri.Ui.Checkbox.V1",
+    "comment": "\n\n@docs Model, Theme, ColorTheme\n\n@docs view, viewWithLabel, viewAttention, disabled\n@docs IsSelected\n@docs keyframeCss, styles\n\n\n## Premium\n\n@docs PremiumConfig, premium\n\n",
+    "aliases": [
+      {
+        "name": "Model",
+        "comment": "\n\n  - isChecked : Maybe Bool\n      - Just True == Checked (rendered checkmark)\n      - Just False == Not Checked (rendered blank)\n      - Nothing == Indeterminate (rendered dash)\n\n",
+        "args": [
+          "msg"
+        ],
+        "type": "{ identifier : String , label : String , setterMsg : Bool -> msg , isChecked : Maybe.Maybe Bool , disabled : Bool , theme : Nri.Ui.Checkbox.V1.Theme , noOpMsg : msg }"
+      },
+      {
+        "name": "PremiumConfig",
+        "comment": "\n\n  - `onChange`: A message for when the user toggles the checkbox\n  - `onLockedClick`: A message for when the user clicks a checkbox they don't have PremiumLevel for.\n    If you get this message, you should show an `Nri.Ui.Premium.Model.view`\n\n",
+        "args": [
+          "msg"
+        ],
+        "type": "{ label : String , id : String , selected : Nri.Ui.Checkbox.V1.IsSelected , disabled : Bool , teacherPremiumLevel : Nri.Ui.Data.PremiumLevel.PremiumLevel , contentPremiumLevel : Nri.Ui.Data.PremiumLevel.PremiumLevel , showFlagWhenLocked : Bool , onChange : Bool -> msg , onLockedClick : msg , noOpMsg : msg }"
+      }
+    ],
+    "types": [
+      {
+        "name": "ColorTheme",
+        "comment": " ",
+        "args": [],
+        "cases": [
+          [
+            "Default",
+            []
+          ],
+          [
+            "Gray",
+            []
+          ],
+          [
+            "Orange",
+            []
+          ]
+        ]
+      },
+      {
+        "name": "IsSelected",
+        "comment": " ",
+        "args": [],
+        "cases": [
+          [
+            "Selected",
+            []
+          ],
+          [
+            "NotSelected",
+            []
+          ],
+          [
+            "PartiallySelected",
+            []
+          ]
+        ]
+      },
+      {
+        "name": "Theme",
+        "comment": " ",
+        "args": [],
+        "cases": [
+          [
+            "Square",
+            [
+              "Nri.Ui.Checkbox.V1.ColorTheme"
+            ]
+          ],
+          [
+            "Round",
+            [
+              "Bool"
+            ]
+          ],
+          [
+            "Locked",
+            []
+          ],
+          [
+            "LockOnInside",
+            []
+          ],
+          [
+            "Unlockable",
+            []
+          ],
+          [
+            "Disabled",
+            []
+          ],
+          [
+            "Premium",
+            []
+          ]
+        ]
+      }
+    ],
+    "values": [
+      {
+        "name": "disabled",
+        "comment": " Show a disabled checkbox.\n",
+        "type": "String -> String -> Accessibility.Html msg"
+      },
+      {
+        "name": "keyframeCss",
+        "comment": " ",
+        "type": "Nri.Ui.Styles.V1.Keyframe"
+      },
+      {
+        "name": "premium",
+        "comment": " A checkbox that should be used for premium content\n\nThis checkbox is locked when the premium level of the content is greater than the premium level of the teacher\n\n",
+        "type": "Nri.Ui.Checkbox.V1.PremiumConfig msg -> Accessibility.Html msg"
+      },
+      {
+        "name": "styles",
+        "comment": " ",
+        "type": "Nri.Ui.Styles.V1.StylesWithAssets Basics.Never Nri.Ui.Checkbox.V1.CssClasses msg (Nri.Ui.Checkbox.V1.Assets r)"
+      },
+      {
+        "name": "view",
+        "comment": " Shows a checkbox (the label is only used for accessibility hints)\n",
+        "type": "Nri.Ui.Checkbox.V1.Model msg -> Accessibility.Html msg"
+      },
+      {
+        "name": "viewAttention",
+        "comment": " ",
+        "type": "Nri.Ui.Checkbox.V1.Model msg -> Accessibility.Html msg"
+      },
+      {
+        "name": "viewWithLabel",
+        "comment": " Shows a checkbox and its label text\n",
+        "type": "Nri.Ui.Checkbox.V1.Model msg -> Accessibility.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.Outline.V1",
+    "comment": " A module for rendering outline layouts.\n\n@docs segment\n@docs node\n@docs NodeLayout\n@docs NodeConfig\n@docs config\n@docs html\n@docs styles\n\n",
+    "aliases": [
+      {
+        "name": "NodeConfig",
+        "comment": " Defines how a node should look.\n",
+        "args": [
+          "msg"
+        ],
+        "type": "{ label : Html.Html msg , contents : Html.Html msg , children : List (Nri.Ui.Outline.V1.NodeLayout msg) , selected : Bool , ghosted : Bool , attrs : List (Html.Attribute msg) }"
+      }
+    ],
+    "types": [
+      {
+        "name": "NodeLayout",
+        "comment": " A wrapper for a node rendered into Html. This type exists to prevent us\nfrom accidentally wrapping a node in a container element before passing it as a\nchild to another node or segment. Such wrapping would break some of our\nstyling, which assumes nodes of the same level are sibblings in the Html tree.\n",
+        "args": [
+          "msg"
+        ],
+        "cases": []
+      }
+    ],
+    "values": [
+      {
+        "name": "config",
+        "comment": " A default node configuration, allowing you to only set the properties you care about.\n\n    node { config | label = \"Claim\" }\n\n",
+        "type": "Nri.Ui.Outline.V1.NodeConfig msg"
+      },
+      {
+        "name": "html",
+        "comment": " Wrap any html in a NodeLayout so you can use it as sibling content to nodes.\n\n    segment\n        [ node { config | label = \"This is a node\" }\n        , html (Html.text \"This is some random Html content!\")\n        ]\n\n",
+        "type": "Html.Html msg -> Nri.Ui.Outline.V1.NodeLayout msg"
+      },
+      {
+        "name": "node",
+        "comment": " Draw a node of an outline structure. You can draw other nodes inside it and\nconnecting lines will appear.\n\n    node { config | label = \"Claim\" }\n\n",
+        "type": "Nri.Ui.Outline.V1.NodeConfig msg -> Nri.Ui.Outline.V1.NodeLayout msg"
+      },
+      {
+        "name": "segment",
+        "comment": " A container to draw nodes in.\n\n    segment\n        [ node { config | label = \"First Node\" }\n        , node { config | label = \"Second Node\" }\n        ]\n\n",
+        "type": "List (Nri.Ui.Outline.V1.NodeLayout msg) -> Html.Html msg"
+      },
+      {
+        "name": "styles",
+        "comment": " Styles used by outline structures.\n",
+        "type": "Nri.Ui.Styles.V1.Styles a Nri.Ui.Outline.V1.Style b"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.Text.V1",
+    "comment": " Text types:\n\n@docs caption\n@docs heading\n@docs mediumBody\n@docs smallBody\n@docs smallBodyGray\n@docs subHeading\n@docs tagline\n\nText class strings:\n\n@docs captionClassString\n@docs mediumBodyClassString\n@docs smallBodyClassString\n\n@docs styles\n\nModifying strings to display nicely:\n\n@docs noWidow\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "caption",
+        "comment": " This is a little note or caption.\n",
+        "type": "List (Html.Html msg) -> Html.Html msg"
+      },
+      {
+        "name": "captionClassString",
+        "comment": " Stringified version of `captionClasses`.\nNecessary because <https://github.com/rtfeldman/elm-css-helpers/issues/2>\n",
+        "type": "String"
+      },
+      {
+        "name": "heading",
+        "comment": " This is a Page Heading.\n",
+        "type": "List (Html.Html msg) -> Html.Html msg"
+      },
+      {
+        "name": "mediumBody",
+        "comment": " This is some medium body copy.\n",
+        "type": "List (Html.Html msg) -> Html.Html msg"
+      },
+      {
+        "name": "mediumBodyClassString",
+        "comment": " Stringified version of `mediumBodyClasses`.\nNecessary because <https://github.com/rtfeldman/elm-css-helpers/issues/2>\n",
+        "type": "String"
+      },
+      {
+        "name": "noWidow",
+        "comment": " Eliminate widows (single words on their own line caused by\nwrapping) by inserting a non-breaking space if there are at least two\nwords.\n",
+        "type": "String -> String"
+      },
+      {
+        "name": "smallBody",
+        "comment": " This is some small body copy.\n",
+        "type": "List (Html.Html msg) -> Html.Html msg"
+      },
+      {
+        "name": "smallBodyClassString",
+        "comment": " Stringified version of `smallBodyClasses`.\nNecessary because <https://github.com/rtfeldman/elm-css-helpers/issues/2>\n",
+        "type": "String"
+      },
+      {
+        "name": "smallBodyGray",
+        "comment": " This is some small body copy but it's gray.\n",
+        "type": "List (Html.Html msg) -> Html.Html msg"
+      },
+      {
+        "name": "styles",
+        "comment": " ",
+        "type": "Nri.Ui.Styles.V1.Styles Basics.Never Nri.Ui.Text.V1.CssClasses msg"
+      },
+      {
+        "name": "subHeading",
+        "comment": " This is a subhead.\n",
+        "type": "List (Html.Html msg) -> Html.Html msg"
+      },
+      {
+        "name": "tagline",
+        "comment": " This is a tagline for a page heading.\n",
+        "type": "List (Html.Html msg) -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.TextArea.V1",
+    "comment": "\n\n\n## The Nri styleguide-specified textarea with overlapping label\n\n@docs view, styles\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "styles",
+        "comment": " ",
+        "type": "Nri.Ui.Styles.V1.Styles Basics.Never Nri.Ui.TextArea.V1.CssClass msg"
+      },
+      {
+        "name": "view",
+        "comment": " ",
+        "type": "Nri.Ui.TextArea.V1.Model msg -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.Tabs.V1",
+    "comment": "\n\n@docs Alignment\n@docs Config\n@docs LinkConfig\n@docs Tab\n@docs TabLink\n@docs links\n@docs styles\n@docs view\n@docs viewCustom\n\n\n## Defaults\n\n@docs viewTabDefault\n\n",
+    "aliases": [
+      {
+        "name": "Config",
+        "comment": " ",
+        "args": [
+          "id",
+          "msg"
+        ],
+        "type": "{ title : Maybe.Maybe String , onSelect : id -> msg , tabs : List.Zipper.Zipper (Nri.Ui.Tabs.V1.Tab id) , content : id -> Html.Html msg , alignment : Nri.Ui.Tabs.V1.Alignment }"
+      },
+      {
+        "name": "LinkConfig",
+        "comment": " Configure a set a tab links\n",
+        "args": [
+          "msg"
+        ],
+        "type": "{ title : Maybe.Maybe String , tabs : List.Zipper.Zipper Nri.Ui.Tabs.V1.TabLink , content : Html.Html msg , alignment : Nri.Ui.Tabs.V1.Alignment }"
+      },
+      {
+        "name": "Tab",
+        "comment": " ",
+        "args": [
+          "id"
+        ],
+        "type": "{ label : String, id : id }"
+      },
+      {
+        "name": "TabLink",
+        "comment": " Describe a tab that is meant to link to another page\n",
+        "args": [],
+        "type": "{ label : String, href : Maybe.Maybe String }"
+      }
+    ],
+    "types": [
+      {
+        "name": "Alignment",
+        "comment": " Determines whether tabs are centered or floating to the left or right.\n",
+        "args": [],
+        "cases": [
+          [
+            "Left",
+            []
+          ],
+          [
+            "Center",
+            []
+          ],
+          [
+            "Right",
+            []
+          ]
+        ]
+      }
+    ],
+    "values": [
+      {
+        "name": "links",
+        "comment": " View a set of tab links\n",
+        "type": "Nri.Ui.Tabs.V1.LinkConfig msg -> Html.Html msg"
+      },
+      {
+        "name": "styles",
+        "comment": " ",
+        "type": "Nri.Ui.Styles.V1.Styles Basics.Never Nri.Ui.Tabs.V1.CssClasses msg"
+      },
+      {
+        "name": "view",
+        "comment": " ",
+        "type": "Nri.Ui.Tabs.V1.Config id msg -> Html.Html msg"
+      },
+      {
+        "name": "viewCustom",
+        "comment": " ",
+        "type": "Nri.Ui.Tabs.V1.Config id msg -> (Nri.Ui.Tabs.V1.Tab id -> Html.Html msg) -> Html.Html msg"
+      },
+      {
+        "name": "viewTabDefault",
+        "comment": " ",
+        "type": "Nri.Ui.Tabs.V1.Tab id -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.TextInput.V1",
+    "comment": "\n\n@docs InputType\n@docs Model\n@docs styles\n@docs view\n@docs withInvisibleLabel\n\n\n## Input types\n\n@docs number\n@docs text\n\n",
+    "aliases": [
+      {
+        "name": "Model",
+        "comment": " ",
+        "args": [
+          "value",
+          "msg"
+        ],
+        "type": "{ label : String , isInError : Bool , onInput : value -> msg , placeholder : String , value : value , autofocus : Bool , type_ : Nri.Ui.TextInput.V1.InputType value }"
+      }
+    ],
+    "types": [
+      {
+        "name": "InputType",
+        "comment": " ",
+        "args": [
+          "value"
+        ],
+        "cases": []
+      }
+    ],
+    "values": [
+      {
+        "name": "number",
+        "comment": " An input that allows number entry\n",
+        "type": "Nri.Ui.TextInput.V1.InputType (Maybe.Maybe Int)"
+      },
+      {
+        "name": "styles",
+        "comment": " ",
+        "type": "Nri.Ui.Styles.V1.Styles Basics.Never Nri.Ui.TextInput.V1.CssClasses msg"
+      },
+      {
+        "name": "text",
+        "comment": " An input that allows text entry\n",
+        "type": "Nri.Ui.TextInput.V1.InputType String"
+      },
+      {
+        "name": "view",
+        "comment": " ",
+        "type": "Nri.Ui.TextInput.V1.Model value msg -> Html.Html msg"
+      },
+      {
+        "name": "withInvisibleLabel",
+        "comment": " ",
+        "type": "Nri.Ui.TextInput.V1.Model value msg -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.Modal.V1",
+    "comment": "\n\n@docs Model\n@docs info\n@docs styles\n@docs warning\n\n",
+    "aliases": [
+      {
+        "name": "Model",
+        "comment": "\n\n  - `onDismiss`: If `Nothing`, the modal will not be dismissable\n  - `visibleTitle`: If `False`, the title will still be used for screen readers\n  - `content`: This will be placed in a `width:100%` div in the main area of the modal\n  - `footerContent`: The optional items here will be stacked below the main content area and center-aligned.\n    Commonly you will either give a list of Nri.Ui.Buttons,\n    or an empty list.\n\n",
+        "args": [
+          "msg"
+        ],
+        "type": "{ title : String , visibleTitle : Bool , content : Html.Html msg , footerContent : List (Html.Html msg) , onDismiss : Maybe.Maybe msg , width : Maybe.Maybe Int }"
+      }
+    ],
+    "types": [],
+    "values": [
+      {
+        "name": "info",
+        "comment": " ",
+        "type": "Nri.Ui.Modal.V1.Model msg -> Html.Html msg"
+      },
+      {
+        "name": "styles",
+        "comment": " ",
+        "type": "Nri.Ui.Styles.V1.Styles Basics.Never Nri.Ui.Modal.V1.CssClasses b"
+      },
+      {
+        "name": "warning",
+        "comment": " ",
+        "type": "Nri.Ui.Modal.V1.Model msg -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.Divider.V1",
+    "comment": " <https://staging.noredink.com/style_guide#ui/src/Nri/Divider.elm>\n\n@docs styles, view\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "styles",
+        "comment": " ",
+        "type": "Nri.Ui.Styles.V1.Styles Basics.Never Nri.Ui.Divider.V1.CssClasses msg"
+      },
+      {
+        "name": "view",
+        "comment": " ",
+        "type": "String -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.Alert.V1",
+    "comment": " UI components that highlight information to the user.\n\n@docs Model\n@docs error\n@docs styles\n@docs success\n@docs tip\n@docs viewResult\n@docs warning\n\n",
+    "aliases": [
+      {
+        "name": "Model",
+        "comment": " ",
+        "args": [],
+        "type": "{ content : String }"
+      }
+    ],
+    "types": [],
+    "values": [
+      {
+        "name": "error",
+        "comment": " ",
+        "type": "Nri.Ui.Alert.V1.Model -> Html.Html msg"
+      },
+      {
+        "name": "styles",
+        "comment": " ",
+        "type": "Nri.Ui.Styles.V1.Styles Basics.Never Nri.Ui.Alert.V1.CssClasses msg"
+      },
+      {
+        "name": "success",
+        "comment": " ",
+        "type": "Nri.Ui.Alert.V1.Model -> Html.Html msg"
+      },
+      {
+        "name": "tip",
+        "comment": " ",
+        "type": "Nri.Ui.Alert.V1.Model -> Html.Html msg"
+      },
+      {
+        "name": "viewResult",
+        "comment": " Show either an error or success alert depending on the given Result\n",
+        "type": "Result.Result String String -> Html.Html msg"
+      },
+      {
+        "name": "warning",
+        "comment": " ",
+        "type": "Nri.Ui.Alert.V1.Model -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.Button.V1",
+    "comment": " Common NoRedInk buttons. For accessibility purposes, buttons that perform an\naction on the current page should be HTML `<button>` elements and are created here\nwith `*Button` functions. Buttons that take the user to a new page should be\nHTML `<a>` elements and are created here with `*Link` functions. Both versions\nshould be able to use the same CSS class in all cases.\n\nThere will generally be a `*Button` and `*Link` version of each button style.\n(These will be created as they are needed.)\n\n\n## Required styles\n\n@docs styles\n\n\n## Common configs\n\n@docs ButtonContent\n@docs ButtonSize\n@docs ButtonState\n@docs ButtonStyle\n\n\n## `<button>` Buttons\n\n@docs button\n\n",
+    "aliases": [
+      {
+        "name": "ButtonContent",
+        "comment": " ButtonContent, often changes based on ButtonState.\nFor example, a button in the \"Success\" state\nmay have a different label than a button in the \"Error\" state\n",
+        "args": [],
+        "type": "{ label : String, state : Nri.Ui.Button.V1.ButtonState }"
+      }
+    ],
+    "types": [
+      {
+        "name": "ButtonSize",
+        "comment": " Sizes for buttons that have button classes\n\nNOTE: if you add a size here, you need to add Css styles using the sizeStyle helper in the styles definition.\n\n",
+        "args": [],
+        "cases": [
+          [
+            "Tiny",
+            []
+          ],
+          [
+            "Small",
+            []
+          ],
+          [
+            "Medium",
+            []
+          ],
+          [
+            "Large",
+            []
+          ]
+        ]
+      },
+      {
+        "name": "ButtonState",
+        "comment": " Describes the state of a button. Has consequences for appearance and disabled attribute.\n\n  - Enabled: An enabled button. Takes the appearance of ButtonStyle\n  - Unfulfilled: A button which appears with the InactiveColors palette but is not disabled.\n  - Disabled: A button which appears with the InactiveColors palette and is disabled.\n  - Error: A button which appears with the ErrorColors palette and is not disabled.\n  - Loading: A button which appears with the LoadingColors palette and is disabled\n  - Success: A button which appears with the InactiveColors palette and is disabled\n\n",
+        "args": [],
+        "cases": [
+          [
+            "Enabled",
+            []
+          ],
+          [
+            "Unfulfilled",
+            []
+          ],
+          [
+            "Disabled",
+            []
+          ],
+          [
+            "Error",
+            []
+          ],
+          [
+            "Loading",
+            []
+          ],
+          [
+            "Success",
+            []
+          ]
+        ]
+      },
+      {
+        "name": "ButtonStyle",
+        "comment": " Styleguide-approved styles for your buttons!\n\nNote on borderless buttons:\nA borderless button that performs an action on the current page\nThis button is intended to look like a link.\nOnly use a borderless button when the clickable text in question follows the same layout/margin/padding as a bordered button\n\n",
+        "args": [],
+        "cases": [
+          [
+            "Primary",
+            []
+          ],
+          [
+            "Secondary",
+            []
+          ],
+          [
+            "Borderless",
+            []
+          ],
+          [
+            "Danger",
+            []
+          ]
+        ]
+      }
+    ],
+    "values": [
+      {
+        "name": "button",
+        "comment": " A delightful button which can trigger an effect when clicked!\n\nThis button will trigger the passed-in message if the button state is:\n\n  - Enabled\n  - Unfulfilled\n\nThis button will be Disabled if the button state is:\n\n  - Disabled\n  - Error\n  - Loading\n  - Success\n\n",
+        "type": "Nri.Ui.Button.V1.ButtonConfig msg -> Nri.Ui.Button.V1.ButtonContent -> Accessibility.Html msg"
+      },
+      {
+        "name": "styles",
+        "comment": " Required CSS styles for `Nri.Ui.Button`.\n",
+        "type": "Nri.Ui.Styles.V1.Styles Basics.Never Nri.Ui.Button.V1.CssClasses msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.BannerAlert.V1",
+    "comment": "\n\n@docs error\n@docs neutral\n@docs styles\n@docs success\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "error",
+        "comment": " A banner to show error alerts\n",
+        "type": "String -> Html.Html msg"
+      },
+      {
+        "name": "neutral",
+        "comment": " A banner to show neutral alerts\n",
+        "type": "String -> Html.Html msg"
+      },
+      {
+        "name": "styles",
+        "comment": " ",
+        "type": "Nri.Ui.Styles.V1.Styles Basics.Never Nri.Ui.BannerAlert.V1.CssClasses b"
+      },
+      {
+        "name": "success",
+        "comment": " A banner for success alerts\n",
+        "type": "String -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.Palette.V1",
+    "comment": " Predefined color palettes for use in configurable components\n\n@docs Palette, PaletteName\n@docs white, gray, darkGray, blue, darkBlue, purple, turquoise, green, red, aqua, cornflower\n\n",
+    "aliases": [
+      {
+        "name": "Palette",
+        "comment": " ",
+        "args": [],
+        "type": "{ border : Css.Color , background : Css.Color , primary : Css.Color , name : Nri.Ui.Palette.V1.PaletteName }"
+      }
+    ],
+    "types": [
+      {
+        "name": "PaletteName",
+        "comment": " ",
+        "args": [],
+        "cases": [
+          [
+            "Gray",
+            []
+          ],
+          [
+            "DarkGray",
+            []
+          ],
+          [
+            "Blue",
+            []
+          ],
+          [
+            "DarkBlue",
+            []
+          ],
+          [
+            "Purple",
+            []
+          ],
+          [
+            "Turquoise",
+            []
+          ],
+          [
+            "Red",
+            []
+          ],
+          [
+            "Green",
+            []
+          ],
+          [
+            "White",
+            []
+          ],
+          [
+            "Cornflower",
+            []
+          ],
+          [
+            "Aqua",
+            []
+          ]
+        ]
+      }
+    ],
+    "values": [
+      {
+        "name": "aqua",
+        "comment": " Aqua palette\n",
+        "type": "Nri.Ui.Palette.V1.Palette"
+      },
+      {
+        "name": "blue",
+        "comment": " Blue palette\n",
+        "type": "Nri.Ui.Palette.V1.Palette"
+      },
+      {
+        "name": "cornflower",
+        "comment": " Cornflower palette\n",
+        "type": "Nri.Ui.Palette.V1.Palette"
+      },
+      {
+        "name": "darkBlue",
+        "comment": " Dark blue palette\n",
+        "type": "Nri.Ui.Palette.V1.Palette"
+      },
+      {
+        "name": "darkGray",
+        "comment": " Dark Gray palette\n",
+        "type": "Nri.Ui.Palette.V1.Palette"
+      },
+      {
+        "name": "gray",
+        "comment": " Gray palette\n",
+        "type": "Nri.Ui.Palette.V1.Palette"
+      },
+      {
+        "name": "green",
+        "comment": " Green palette\n",
+        "type": "Nri.Ui.Palette.V1.Palette"
+      },
+      {
+        "name": "purple",
+        "comment": " Purple palette\n",
+        "type": "Nri.Ui.Palette.V1.Palette"
+      },
+      {
+        "name": "red",
+        "comment": " Red palette\n",
+        "type": "Nri.Ui.Palette.V1.Palette"
+      },
+      {
+        "name": "turquoise",
+        "comment": " Turquoise palette\n",
+        "type": "Nri.Ui.Palette.V1.Palette"
+      },
+      {
+        "name": "white",
+        "comment": " White palette (borders are blue)\n",
+        "type": "Nri.Ui.Palette.V1.Palette"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.Effects.V1",
+    "comment": " Css mixins reused across Nri modules.\n\n@docs selectionShadow\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "selectionShadow",
+        "comment": " Draw a 2 px thick ochre border around the element to indicate it is\nselected.\n\nThis uses a CSS box shadow to draw what looks like a border. Box shadows are\nperfect for this because they don't affect the elements positioning in any way.\nThis means we can be sure switching the selection shadow on and off is not\ngoing to make the element jump.\n\n",
+        "type": "List Css.Style"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.Styles.V1",
+    "comment": " Simplifies using elm-css in modules that expose views\n\n\n## Creating namespaces stylesheets\n\n@docs Styles, StylesWithAssets, styles, stylesWithExtraStylesheets, stylesWithAssets\n\n\n## Helpers for CSS\n\n\n### Keyframe animations\n\n@docs Keyframe, keyframes, toString\n\n",
+    "aliases": [
+      {
+        "name": "Styles",
+        "comment": "\n\n  - `css`: The resulting stylesheets to add to `Nri.Ui.Css.Site`\n  - `id`, `class`, `classList`: The Html.Attribute helper functions\n\n",
+        "args": [
+          "id",
+          "class",
+          "msg"
+        ],
+        "type": "Nri.Ui.Styles.V1.StylesWithAssets id class msg ()"
+      },
+      {
+        "name": "StylesWithAssets",
+        "comment": " Styles that depend on assets, for instance because they use a background\nimage somewhere.\n",
+        "args": [
+          "id",
+          "class",
+          "msg",
+          "assets"
+        ],
+        "type": "{ css : assets -> List Css.Stylesheet , id : id -> Html.Attribute msg , class : List class -> Html.Attribute msg , classList : List ( class, Bool ) -> Html.Attribute msg , div : class -> List (Html.Html msg) -> Html.Html msg , span : class -> List (Html.Html msg) -> Html.Html msg }"
+      }
+    ],
+    "types": [
+      {
+        "name": "Keyframe",
+        "comment": " A CSS keyframe animation that will have vendor prefixes automatically added.\n",
+        "args": [],
+        "cases": []
+      }
+    ],
+    "values": [
+      {
+        "name": "keyframes",
+        "comment": " Create a CSS keyframe animation with appropriate vendor prefixes\n",
+        "type": "String -> List ( String, String ) -> Nri.Ui.Styles.V1.Keyframe"
+      },
+      {
+        "name": "styles",
+        "comment": " Use this instead of Html.CssHelpers.\nThis will help you make sure you don't mismatch the namespace you're using.\n\n    { css, class } =\n        Nri.Ui.Styles.styles \"Nri-Ui-MyWidget-\"\n            [ Css.class Container\n                [ backgroundColor Nri.Colors.ochre ]\n            ]\n\n",
+        "type": "String -> List Css.Snippet -> Nri.Ui.Styles.V1.Styles id class msg"
+      },
+      {
+        "name": "stylesWithAssets",
+        "comment": " Use this if your styles depend on asset files\n",
+        "type": "String -> (assets -> List Css.Snippet) -> Nri.Ui.Styles.V1.StylesWithAssets id class msg assets"
+      },
+      {
+        "name": "stylesWithExtraStylesheets",
+        "comment": " Use this instead of [`styles`](#styles) if you need to\ninclude Css.Stylesheets from external packages,\nor if you need to add styles without a namespace.\nRemember, all stylesheets given here will be included\non all pages of the site.\n",
+        "type": "String -> List Css.Stylesheet -> List Css.Snippet -> Nri.Ui.Styles.V1.Styles id class msg"
+      },
+      {
+        "name": "toString",
+        "comment": " Turn a [`Keyframe`](#Keyframe) into a string that can be included in a CSS stylesheet.\n",
+        "type": "Nri.Ui.Styles.V1.Keyframe -> String"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Nri.Ui.AssetPath",
+    "comment": " Helpers for dealing with assets.\n\n@docs Asset, url\n\n",
+    "aliases": [],
+    "types": [
+      {
+        "name": "Asset",
+        "comment": " ",
+        "args": [],
+        "cases": [
+          [
+            "Asset",
+            [
+              "String"
+            ]
+          ]
+        ]
+      }
+    ],
+    "values": [
+      {
+        "name": "url",
+        "comment": " ",
+        "type": "Nri.Ui.AssetPath.Asset -> String"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  }
+]

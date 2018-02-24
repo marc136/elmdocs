@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Example",
+    "comment": "\n@docs add\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "add",
+        "comment": "\n",
+        "type": "number -> number -> number"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  }
+]

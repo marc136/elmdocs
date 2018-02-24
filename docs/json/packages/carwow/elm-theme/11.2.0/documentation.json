@@ -1,0 +1,453 @@
+[
+  {
+    "name": "CarwowTheme.Filters",
+    "comment": " Filters\n\n\n# Exports\n\n@docs select, filterView, standardFilterView, FilterGroupItem, filterGroup, FilterDescriptionDisplay\n@docs FilterSettings, TooltipAlignment, defaultFilterSettings\n\n",
+    "aliases": [
+      {
+        "name": "FilterGroupItem",
+        "comment": " Placeholder\n",
+        "args": [
+          "msg"
+        ],
+        "type": "{ filterId : String , filterLabel : String , filterValue : Bool , filterDescription : Maybe.Maybe String , message : Bool -> msg }"
+      },
+      {
+        "name": "FilterSettings",
+        "comment": " Placeholder\n",
+        "args": [],
+        "type": "{ tooltipAlignment : CarwowTheme.Filters.TooltipAlignment , descriptionDisplay : CarwowTheme.Filters.FilterDescriptionDisplay , filterPrefix : Maybe.Maybe String }"
+      }
+    ],
+    "types": [
+      {
+        "name": "FilterDescriptionDisplay",
+        "comment": " Placeholder\n",
+        "args": [],
+        "cases": [
+          [
+            "Inline",
+            []
+          ],
+          [
+            "Expandable",
+            []
+          ]
+        ]
+      },
+      {
+        "name": "TooltipAlignment",
+        "comment": " Placeholder\n",
+        "args": [],
+        "cases": [
+          [
+            "Bottom",
+            []
+          ],
+          [
+            "BottomLeft",
+            []
+          ],
+          [
+            "BottomRight",
+            []
+          ],
+          [
+            "Left",
+            []
+          ],
+          [
+            "Right",
+            []
+          ],
+          [
+            "Top",
+            []
+          ],
+          [
+            "TopLeft",
+            []
+          ],
+          [
+            "TopRight",
+            []
+          ]
+        ]
+      }
+    ],
+    "values": [
+      {
+        "name": "defaultFilterSettings",
+        "comment": " Placeholder\n",
+        "type": "CarwowTheme.Filters.FilterSettings"
+      },
+      {
+        "name": "filterGroup",
+        "comment": " Placeholder\n",
+        "type": "String -> CarwowTheme.Filters.FilterSettings -> List (CarwowTheme.Filters.FilterGroupItem msg) -> List (Html.Html msg)"
+      },
+      {
+        "name": "filterView",
+        "comment": " Placeholder\n",
+        "type": "String -> String -> String -> List (Html.Html msg) -> CarwowTheme.Filters.FilterSettings -> Html.Html msg"
+      },
+      {
+        "name": "select",
+        "comment": " Placeholder\n",
+        "type": "String -> String -> String -> List ( String, String ) -> String -> (String -> value) -> CarwowTheme.Filters.FilterSettings -> List (Html.Html value)"
+      },
+      {
+        "name": "standardFilterView",
+        "comment": " Placeholder\n",
+        "type": "String -> String -> List (CarwowTheme.Filters.FilterGroupItem msg) -> CarwowTheme.Filters.FilterSettings -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "CarwowTheme.ProductListing",
+    "comment": " ProductListing\n\n\n# Exports\n\n@docs featuredView, condensedView, ProductListing, OptionProperties\n\n",
+    "aliases": [
+      {
+        "name": "OptionProperties",
+        "comment": " Placeholder\n",
+        "args": [],
+        "type": "{ name : String, value : String, icon : String }"
+      },
+      {
+        "name": "ProductListing",
+        "comment": " Placeholder\n",
+        "args": [],
+        "type": "{ id : Int , image : Maybe.Maybe String , make : String , model : String , derivativeName : String , options : List CarwowTheme.ProductListing.OptionProperties , price : CarwowTheme.ProductListing.PricingProperties , dealer : CarwowTheme.ProductListing.DealerProperties }"
+      }
+    ],
+    "types": [],
+    "values": [
+      {
+        "name": "condensedView",
+        "comment": " Placeholder\n",
+        "type": "CarwowTheme.ProductListing.ProductListing -> Html.Html msg -> Html.Html msg"
+      },
+      {
+        "name": "featuredView",
+        "comment": " Placeholder\n",
+        "type": "CarwowTheme.ProductListing.ProductListing -> Html.Html msg -> Html.Html msg -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "CarwowTheme.Pagination",
+    "comment": " Filters\n\n\n# Exports\n\n@docs PaginationProperties, view\n\n",
+    "aliases": [
+      {
+        "name": "PaginationProperties",
+        "comment": " Properties for the pagination component\n",
+        "args": [],
+        "type": "{ totalCount : Int , totalPages : Int , perPage : Int , currentPage : Int }"
+      }
+    ],
+    "types": [],
+    "values": [
+      {
+        "name": "view",
+        "comment": " Helper to render the component\n",
+        "type": "CarwowTheme.Pagination.PaginationProperties -> (Int -> msg) -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "CarwowTheme.Modal",
+    "comment": " Displays modal window\n\n\n# Exported\n\n@docs ModalProperties, Model, Msg, PaddingStyle, init, linkView, subscriptions, update, view\n\n",
+    "aliases": [
+      {
+        "name": "ModalProperties",
+        "comment": " Placeholder\n",
+        "args": [
+          "msg"
+        ],
+        "type": "{ body : Html.Html msg , title : Maybe.Maybe (Html.Html msg) , paddingStyle : CarwowTheme.Modal.PaddingStyle , footer : Maybe.Maybe (Html.Html msg) , secondaryAction : Maybe.Maybe (Html.Html msg) }"
+      },
+      {
+        "name": "Model",
+        "comment": " Placeholder\n",
+        "args": [],
+        "type": "{ id : String, isOpen : Bool }"
+      }
+    ],
+    "types": [
+      {
+        "name": "Msg",
+        "comment": " Placeholder\n",
+        "args": [],
+        "cases": [
+          [
+            "SwitchModal",
+            [
+              "Bool"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "PaddingStyle",
+        "comment": " Placeholder\n",
+        "args": [],
+        "cases": [
+          [
+            "NoPadding",
+            []
+          ],
+          [
+            "DefaultPadding",
+            []
+          ]
+        ]
+      }
+    ],
+    "values": [
+      {
+        "name": "init",
+        "comment": " Placeholder\n",
+        "type": "String -> Bool -> CarwowTheme.Modal.Model"
+      },
+      {
+        "name": "linkView",
+        "comment": " Placeholder\n",
+        "type": "CarwowTheme.Modal.Model -> List (Html.Html msg) -> String -> String -> Html.Html msg"
+      },
+      {
+        "name": "subscriptions",
+        "comment": " Placeholder\n",
+        "type": "CarwowTheme.Modal.Model -> Platform.Sub.Sub CarwowTheme.Modal.Msg"
+      },
+      {
+        "name": "update",
+        "comment": " Placeholder\n",
+        "type": "CarwowTheme.Modal.Msg -> CarwowTheme.Modal.Model -> ( CarwowTheme.Modal.Model , Platform.Cmd.Cmd CarwowTheme.Modal.Msg )"
+      },
+      {
+        "name": "view",
+        "comment": " Placeholder\n",
+        "type": "CarwowTheme.Modal.Model -> msg -> msg -> CarwowTheme.Modal.ModalProperties msg -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "CarwowTheme.Drawer",
+    "comment": " Drawer\n\n\n# Exports\n\n@docs Model, Properties, Msg, init, view, subscriptions, update, Action, State\n\n",
+    "aliases": [
+      {
+        "name": "Model",
+        "comment": " Placeholder\n",
+        "args": [],
+        "type": "{ id : String, state : CarwowTheme.Drawer.State }"
+      },
+      {
+        "name": "Properties",
+        "comment": " Placeholder\n",
+        "args": [
+          "msg"
+        ],
+        "type": "{ body : Html.Html msg, title : String }"
+      }
+    ],
+    "types": [
+      {
+        "name": "Action",
+        "comment": " Placeholder\n",
+        "args": [],
+        "cases": [
+          [
+            "Open",
+            []
+          ],
+          [
+            "Close",
+            []
+          ]
+        ]
+      },
+      {
+        "name": "Msg",
+        "comment": " Placeholder\n",
+        "args": [],
+        "cases": [
+          [
+            "Toggle",
+            [
+              "CarwowTheme.Drawer.Action"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "State",
+        "comment": " Placeholder\n",
+        "args": [],
+        "cases": [
+          [
+            "Opened",
+            []
+          ]
+        ]
+      }
+    ],
+    "values": [
+      {
+        "name": "init",
+        "comment": " Placeholder\n",
+        "type": "String -> CarwowTheme.Drawer.Model"
+      },
+      {
+        "name": "subscriptions",
+        "comment": " Placeholder\n",
+        "type": "CarwowTheme.Drawer.Model -> Platform.Sub.Sub CarwowTheme.Drawer.Msg"
+      },
+      {
+        "name": "update",
+        "comment": " Placeholder\n",
+        "type": "CarwowTheme.Drawer.Msg -> CarwowTheme.Drawer.Model -> ( CarwowTheme.Drawer.Model , Platform.Cmd.Cmd CarwowTheme.Drawer.Msg )"
+      },
+      {
+        "name": "view",
+        "comment": " Placeholder\n",
+        "type": "CarwowTheme.Drawer.Model -> CarwowTheme.Drawer.Properties msg -> msg -> msg -> Html.Html msg -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "CarwowTheme.Tabs",
+    "comment": " Tabs\n\n\n# Exports\n\n@docs view, config, tabs, TabItem, getCurrentState, initialState, State\n\n",
+    "aliases": [],
+    "types": [
+      {
+        "name": "State",
+        "comment": " Placeholder\n",
+        "args": [],
+        "cases": []
+      },
+      {
+        "name": "TabItem",
+        "comment": " Placeholder\n",
+        "args": [
+          "msg"
+        ],
+        "cases": [
+          [
+            "TabItem",
+            [
+              "{ id : String, tabLabel : String, tabContent : Html.Html msg }"
+            ]
+          ]
+        ]
+      }
+    ],
+    "values": [
+      {
+        "name": "config",
+        "comment": " Placeholder\n",
+        "type": "(CarwowTheme.Tabs.State -> msg) -> CarwowTheme.Tabs.Config msg"
+      },
+      {
+        "name": "getCurrentState",
+        "comment": " Placeholder\n",
+        "type": "CarwowTheme.Tabs.State -> String"
+      },
+      {
+        "name": "initialState",
+        "comment": " Placeholder\n",
+        "type": "String -> CarwowTheme.Tabs.State"
+      },
+      {
+        "name": "tabs",
+        "comment": " Placeholder\n",
+        "type": "List (CarwowTheme.Tabs.TabItem msg) -> CarwowTheme.Tabs.Config msg -> CarwowTheme.Tabs.Config msg"
+      },
+      {
+        "name": "view",
+        "comment": " Placeholder\n",
+        "type": "CarwowTheme.Tabs.State -> CarwowTheme.Tabs.Config msg -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "CarwowTheme.Inputs",
+    "comment": " Helpers for user input elements.\n\n\n# Checkbox\n\n@docs checkbox\n\n\n# Select\n\n@docs SelectSettings\n\n@docs selectSettings\n\n@docs select\n\n@docs setSelectedOption\n\n@docs disableSelect\n\n",
+    "aliases": [
+      {
+        "name": "SelectSettings",
+        "comment": " Select atom\n",
+        "args": [
+          "msg"
+        ],
+        "type": "{ id : String , options : List ( String, String ) , selectedOption : Maybe.Maybe String , disabled : Bool , onChange : String -> msg }"
+      }
+    ],
+    "types": [],
+    "values": [
+      {
+        "name": "checkbox",
+        "comment": " Checkbox atom\n",
+        "type": "String -> List (Html.Html msg) -> Bool -> (Bool -> msg) -> List (Html.Html msg)"
+      },
+      {
+        "name": "disableSelect",
+        "comment": " Disable a select\n",
+        "type": "CarwowTheme.Inputs.SelectSettings msg -> CarwowTheme.Inputs.SelectSettings msg"
+      },
+      {
+        "name": "select",
+        "comment": " Render a select\n",
+        "type": "CarwowTheme.Inputs.SelectSettings msg -> Html.Html msg"
+      },
+      {
+        "name": "selectSettings",
+        "comment": " Required select settings: id, possible options, onchange message\n",
+        "type": "String -> List ( String, String ) -> (String -> msg) -> CarwowTheme.Inputs.SelectSettings msg"
+      },
+      {
+        "name": "setSelectedOption",
+        "comment": " Define the selected option for the select\n",
+        "type": "String -> CarwowTheme.Inputs.SelectSettings msg -> CarwowTheme.Inputs.SelectSettings msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "CarwowTheme.EmptyState",
+    "comment": " EmptyState\n\n\n# Exports\n\n@docs emptyState\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "emptyState",
+        "comment": " Placeholder\n",
+        "type": "String -> String -> Html.Html msg -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "CarwowTheme.Icons",
+    "comment": " Icons are displayed using the SVG spirte technique.\n\n\n# Embed icon\n\n@docs icon, makeIcon\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "icon",
+        "comment": " Embeds an icon from the SVG sprite, with the given properties.\n",
+        "type": "String -> CarwowTheme.Icons.Properties -> Html.Html msg"
+      },
+      {
+        "name": "makeIcon",
+        "comment": " Embeds a Make icon, with the given make slug and optional properties\n",
+        "type": "String -> Maybe.Maybe CarwowTheme.Icons.Properties -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  }
+]

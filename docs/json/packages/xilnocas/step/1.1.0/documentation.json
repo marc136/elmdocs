@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Step",
+    "comment": " Some stuff\n\n@docs Step, map, noop, orElse, run, to, withCmd, mapMsg, exit, mapExit, onExit, asUpdateFunction, foldSteps\n\n",
+    "aliases": [],
+    "types": [
+      {
+        "name": "Step",
+        "comment": " Step\n\na `Step state msg output` describes one step of a state machine.\n\nOn each step, the state machine can either\n\n  - `noop`, staying in the same state and executing no commands\n  - step `to` some new `state`, potentially executing `msg`-returning commands\n  - `exit`, and return a value of type `output`\n\n",
+        "args": [
+          "state",
+          "msg",
+          "output"
+        ],
+        "cases": []
+      }
+    ],
+    "values": [
+      {
+        "name": "asUpdateFunction",
+        "comment": " asUpdateFunction\n\na little helper function for the common case: turn an update function that returns a `Step` to a normal elm architecture update function\nuses `run` internally to default with the provided model in case of a `noop`\n\n",
+        "type": "(msg -> model -> Step.Step model msg Basics.Never) -> msg -> model -> ( model, Platform.Cmd.Cmd msg )"
+      },
+      {
+        "name": "exit",
+        "comment": " ",
+        "type": "output -> Step.Step state msg output"
+      },
+      {
+        "name": "foldSteps",
+        "comment": " starting from an initial state, fold an update function over a list of messages\n",
+        "type": "{ init : Step.Step model msg output , update : msg -> model -> Step.Step model msg output , msgs : List msg } -> Step.Step model msg output"
+      },
+      {
+        "name": "map",
+        "comment": " ",
+        "type": "(a -> b) -> Step.Step a msg output -> Step.Step b msg output"
+      },
+      {
+        "name": "mapExit",
+        "comment": " ",
+        "type": "(o -> p) -> Step.Step state msg o -> Step.Step state msg p"
+      },
+      {
+        "name": "mapMsg",
+        "comment": " ",
+        "type": "(a -> b) -> Step.Step state a output -> Step.Step state b output"
+      },
+      {
+        "name": "noop",
+        "comment": " ",
+        "type": "Step.Step state msg output"
+      },
+      {
+        "name": "onExit",
+        "comment": " ",
+        "type": "(o -> Step.Step state msg p) -> Step.Step state msg o -> Step.Step state msg p"
+      },
+      {
+        "name": "orElse",
+        "comment": " ",
+        "type": "Step.Step state msg output -> Step.Step state msg output -> Step.Step state msg output"
+      },
+      {
+        "name": "run",
+        "comment": " ",
+        "type": "Step.Step state msg Basics.Never -> Maybe.Maybe ( state, Platform.Cmd.Cmd msg )"
+      },
+      {
+        "name": "to",
+        "comment": " step to a state with no commands\n",
+        "type": "state -> Step.Step state msg output"
+      },
+      {
+        "name": "withCmd",
+        "comment": " ",
+        "type": "Platform.Cmd.Cmd msg -> Step.Step state msg output -> Step.Step state msg output"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  }
+]

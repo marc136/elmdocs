@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Datadown.Process",
+    "comment": " Process\n\n\n## Types\n\n@docs Error\n\n## Functions\n\n@docs processDocument\n\n",
+    "aliases": [],
+    "types": [
+      {
+        "name": "Error",
+        "comment": " Error after processing, possibly from evaluating expressions\n",
+        "args": [
+          "e"
+        ],
+        "cases": []
+      }
+    ],
+    "values": [
+      {
+        "name": "processDocument",
+        "comment": " Process a document and return a result\n",
+        "type": "(a -> Result.Result e a) -> Datadown.Document a -> Dict.Dict String (Result.Result (Datadown.Process.Error e) (Datadown.Content a))"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Datadown.Parse",
+    "comment": " Parse Datadown documents\n\n\n# Run Parsers\n\n@docs parseDocument, parseSection\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "parseDocument",
+        "comment": " Parses a Datadown document\n\n    parseDocument \"\"\"\n\n\n# Title\n\n\"\"\"\n\n",
+        "type": "(String -> a) -> String -> Datadown.Document a"
+      },
+      {
+        "name": "parseSection",
+        "comment": " Parses a Datadown section\n\n    parseSection \"\"\"\n\n\n## Section\n\n  - first\n  - second\n  - third\n    \"\"\"\n\n",
+        "type": "List (Markdown.Block.Block b i) -> Datadown.Section a"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Datadown",
+    "comment": " A library for Datadown parsing\n\n\n# Types\n\n@docs Document, Section, Content\n\n",
+    "aliases": [
+      {
+        "name": "Document",
+        "comment": " A full document, with many sections\n",
+        "args": [
+          "a"
+        ],
+        "type": "{ title : String, sections : List (Datadown.Section a) }"
+      },
+      {
+        "name": "Section",
+        "comment": " A section of data\n",
+        "args": [
+          "a"
+        ],
+        "type": "{ title : String , mainContent : Maybe.Maybe (Datadown.Content a) , secondaryContent : Dict.Dict String (Datadown.Content a) }"
+      }
+    ],
+    "types": [
+      {
+        "name": "Content",
+        "comment": " Content, such as plain text, code, lists, etc\n",
+        "args": [
+          "a"
+        ],
+        "cases": [
+          [
+            "Text",
+            [
+              "String"
+            ]
+          ],
+          [
+            "Code",
+            [
+              "Maybe.Maybe String",
+              "String"
+            ]
+          ],
+          [
+            "Expressions",
+            [
+              "a"
+            ]
+          ],
+          [
+            "List",
+            [
+              "List (Datadown.Content a)"
+            ]
+          ],
+          [
+            "Quote",
+            [
+              "Datadown.Document a"
+            ]
+          ]
+        ]
+      }
+    ],
+    "values": [],
+    "generated-with-elm-version": "0.18.0"
+  }
+]

@@ -1,0 +1,136 @@
+[
+  {
+    "name": "Formula",
+    "comment": " This library parses string to formulas\n\n\n# Definitions\n\n@docs Formula, Signed\n\n\n# Parsers\n\n@docs parse, parseSigned\n\n\n# Strings\n\n@docs strFormula, strSigned, errorString\n\n\n# Helpers\n\n@docs isAlpha, isBeta, isSignedComplementary, isSignedSubformulaOf, signedGetFormula, signedSubformulas\n\n",
+    "aliases": [],
+    "types": [
+      {
+        "name": "Formula",
+        "comment": " Formula can be\n\n  - atomic\n  - negation of a formula\n  - disjunction, conjuction, implication of two formulas\n  - FF and FT\n\n",
+        "args": [],
+        "cases": [
+          [
+            "Atom",
+            [
+              "String"
+            ]
+          ],
+          [
+            "Neg",
+            [
+              "Formula.Formula"
+            ]
+          ],
+          [
+            "Disj",
+            [
+              "Formula.Formula",
+              "Formula.Formula"
+            ]
+          ],
+          [
+            "Conj",
+            [
+              "Formula.Formula",
+              "Formula.Formula"
+            ]
+          ],
+          [
+            "Impl",
+            [
+              "Formula.Formula",
+              "Formula.Formula"
+            ]
+          ],
+          [
+            "FF",
+            []
+          ],
+          [
+            "FT",
+            []
+          ]
+        ]
+      },
+      {
+        "name": "Signed",
+        "comment": " Signed with T[rue] or F[alse]\n",
+        "args": [
+          "a"
+        ],
+        "cases": [
+          [
+            "T",
+            [
+              "a"
+            ]
+          ],
+          [
+            "F",
+            [
+              "a"
+            ]
+          ]
+        ]
+      }
+    ],
+    "values": [
+      {
+        "name": "errorString",
+        "comment": " Return error message from parsing error\n",
+        "type": "Parser.Error -> String"
+      },
+      {
+        "name": "isAlpha",
+        "comment": " Is the formula of type Alpha\n",
+        "type": "Formula.Signed Formula.Formula -> Bool"
+      },
+      {
+        "name": "isBeta",
+        "comment": " Is the formula of type Beta\n",
+        "type": "Formula.Signed Formula.Formula -> Bool"
+      },
+      {
+        "name": "isSignedComplementary",
+        "comment": " Are the two signed formulas complementary\n",
+        "type": "Formula.Signed Formula.Formula -> Formula.Signed Formula.Formula -> Bool"
+      },
+      {
+        "name": "isSignedSubformulaOf",
+        "comment": " Is the first signed formula of the other\n",
+        "type": "Formula.Signed Formula.Formula -> Formula.Signed Formula.Formula -> Bool"
+      },
+      {
+        "name": "parse",
+        "comment": " Parse string to Formula\n",
+        "type": "String -> Result.Result Parser.Error Formula.Formula"
+      },
+      {
+        "name": "parseSigned",
+        "comment": " Parse string to Signed Formula\n",
+        "type": "String -> Result.Result Parser.Error (Formula.Signed Formula.Formula)"
+      },
+      {
+        "name": "signedGetFormula",
+        "comment": " Get formula out of signed formula\n",
+        "type": "Formula.Signed Formula.Formula -> Formula.Formula"
+      },
+      {
+        "name": "signedSubformulas",
+        "comment": " Get signed subformulas as list of signed formulas\n",
+        "type": "Formula.Signed Formula.Formula -> List (Formula.Signed Formula.Formula)"
+      },
+      {
+        "name": "strFormula",
+        "comment": " Show representation of a Formula. todo: rewrite with toString instead.\n",
+        "type": "Formula.Formula -> String"
+      },
+      {
+        "name": "strSigned",
+        "comment": " Show representation of a Signed Formula. todo: rewrite with toString instead.\n",
+        "type": "Formula.Signed Formula.Formula -> String"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  }
+]
